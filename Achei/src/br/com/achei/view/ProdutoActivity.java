@@ -155,9 +155,8 @@ public class ProdutoActivity extends Activity {
 					FileOutputStream outStream = null; // outstream de saida
 					String nomeFoto = "minhafoto.jpeg"; // nome da foto final
 					File iPhoto = new File(
-							Environment.getExternalStorageDirectory(), nomeFoto); // cria
-																					// o
-																					// arquivo
+							Environment.getExternalStorageDirectory() + FOLDER,
+							nomeFoto); // cria o arquivo
 					outStream = new FileOutputStream(iPhoto); // associa o
 																// outstream com
 																// o arquivo
