@@ -22,14 +22,14 @@
                 android:id="@+id/tvCategoriaId"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Alimentação"
+                android:text=""
                 android:textAppearance="?android:attr/textAppearanceLarge" />
 
             <ImageView
-                android:id="@+id/imageView1"
+                android:id="@+id/ivFotoId"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:src="@drawable/ic_camera" />
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_home" />
 
             <TableLayout
                 android:id="@+id/tableLayout1"

@@ -1,15 +1,28 @@
 package br.com.achei.view;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+
 import android.app.Activity;
+import android.content.ContentValues;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.Spinner;
 import android.widget.Toast;
 import br.com.achei.R;
@@ -20,13 +33,9 @@ import br.com.achei.model.entity.ProdutoEntity;
 
 public class ProdutoActivity extends Activity {
 
-	private static final int TIRA_FOTO = 101;
+	private static final int TIRA_FOTO = 123;
 
 	private ProdutoEntity ent = new ProdutoEntity();
-
-	private String arquivo;
-
-	private ImageButton ib;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -97,6 +106,29 @@ public class ProdutoActivity extends Activity {
 				}
 			}
 		});
+
+		ivCamera = (ImageView) findViewById(R.id.ivFotoId);
+		ivCamera.setOnClickListener(new OnClickListener() {
+			public void onClick(View arg0) {
+				File itemp = null;
+				bTemp = null; // propriedade Bitmap que uso para guardar
+								// o
+				// retorno.
+				String filename = "instant_photo.jpg"; // nome temporario.
+				ContentValues values = new ContentValues();
+				values.put(MediaStore.Images.Media.TITLE, filename);
+				values.put(MediaStore.Images.Media.DESCRIPTION,
+						"Image captured by camera");
+				itemp = new File(Environment.getExternalStorageDirectory()
+						+ FOLDER, filename);
+				imageUri = Uri.fromFile(itemp);
+				Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+				intent.putExtra(MediaStore.EXTRA_OUTPUT, imageUri);
+				intent.putExtra(MediaStore.EXTRA_VIDEO_QUALITY, 1);
+				startActivityForResult(intent, ACTIVITY_FOTO); // ACTIVITY_FOTO
+																// constante.
+			}
+		});
 	}
 
 	@Override
@@ -104,6 +136,72 @@ public class ProdutoActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.main, menu);
 		return super.onCreateOptionsMenu(menu);
+	}
+
+	Uri imageUri;
+	Bitmap bTemp;
+	ImageView ivCamera;
+
+	String FOLDER = "/";
+	int ACTIVITY_FOTO = 101;
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == ACTIVITY_FOTO) {
+			if (resultCode == RESULT_OK) {
+				try {
+					bTemp = MediaStore.Images.Media.getBitmap(
+							getContentResolver(), imageUri);
+
+					FileOutputStream outStream = null; // outstream de saida
+					String nomeFoto = "minhafoto.jpeg"; // nome da foto final
+					File iPhoto = new File(
+							Environment.getExternalStorageDirectory(), nomeFoto); // cria
+																					// o
+																					// arquivo
+					outStream = new FileOutputStream(iPhoto); // associa o
+																// outstream com
+																// o arquivo
+																// criado
+					bTemp.compress(Bitmap.CompressFormat.JPEG, 90, outStream); // passa
+																				// o
+																				// Bitmap
+																				// para
+																				// o
+																				// outstream,
+																				// ou
+																				// seja,
+																				// para
+																				// o
+																				// arquivo
+					outStream.close();
+					bTemp.recycle();
+
+					this.ent.setCaminhoImagem(nomeFoto);
+
+					// btCamera.setImageBitmap(bTemp);
+
+					Bitmap b = BitmapFactory.decodeFile(iPhoto.getPath());
+					Bitmap b1 = Bitmap.createScaledBitmap(b, 100, 100, true);
+
+					Bitmap original = BitmapFactory
+							.decodeFile(iPhoto.getPath());
+					ByteArrayOutputStream out = new ByteArrayOutputStream();
+					original.compress(Bitmap.CompressFormat.PNG, 100, out);
+
+					this.ent.setFoto(out.toByteArray());
+
+					ivCamera.setImageBitmap(b1);
+				} catch (FileNotFoundException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				} finally {
+
+				}
+			}
+		}
 	}
 
 	private void spinner() {
@@ -127,8 +225,6 @@ public class ProdutoActivity extends Activity {
 		String categoria = null;
 		categoria = sp.getSelectedItem().toString();
 
-		this.ent = new ProdutoEntity();
-
 		this.ent.setDescricao(descricao.getText().toString());
 		this.ent.setEmail(email.getText().toString());
 		this.ent.setEndereco(endereco.getText().toString());
@@ -136,7 +232,7 @@ public class ProdutoActivity extends Activity {
 		this.ent.setTelefone(telefone.getText().toString());
 		this.ent.setTipo(categoria);
 		this.ent.setTitulo(titulo.getText().toString());
-		this.ent.setCaminhoImagem("/teste/");
+		// this.ent.setCaminhoImagem("/teste/");
 
 		String s = AparelhoUtil.getDeviceId(ProdutoActivity.this);
 
@@ -169,7 +265,7 @@ public class ProdutoActivity extends Activity {
 			this.ent.setTelefone(telefone.getText().toString());
 			this.ent.setTipo(categoria);
 			this.ent.setTitulo(titulo.getText().toString());
-			this.ent.setCaminhoImagem("/teste/");
+			// this.ent.setCaminhoImagem("/teste/");
 
 			String s = AparelhoUtil.getDeviceId(ProdutoActivity.this);
 

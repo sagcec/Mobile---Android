@@ -1,8 +1,11 @@
 package br.com.achei.view;
 
+import java.io.ByteArrayInputStream;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -24,8 +27,6 @@ public class ProdutoViewActivity extends Activity {
 		setContentView(R.layout.activity_produto_view);
 
 		setTitle("Achei!");
-
-		this.iv = (ImageView) findViewById(R.id.imageView1);
 
 		SharedPreferences sP = getSharedPreferences("as", MODE_PRIVATE);
 		final int posicao = sP.getInt("posicao", -1);
@@ -50,6 +51,13 @@ public class ProdutoViewActivity extends Activity {
 
 			((TextView) findViewById(R.id.tvCategoriaId)).setText(this.ent
 					.getTipo());
+
+			// this.iv = (ImageView) findViewById(R.id.ivFotoId);
+
+			((ImageView) findViewById(R.id.ivFotoId))
+					.setImageBitmap(BitmapFactory
+							.decodeStream(new ByteArrayInputStream(this.ent
+									.getFoto())));
 		}
 	}
 

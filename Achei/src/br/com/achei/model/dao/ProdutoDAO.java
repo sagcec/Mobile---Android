@@ -54,7 +54,7 @@ public class ProdutoDAO extends SQLiteOpenHelper {
 		cV.put("telefone", ent.getTelefone());
 		cV.put("tipo", ent.getTipo());
 		cV.put("titulo", ent.getTitulo());
-		// cV.put("titulo", ent.getFoto());
+		cV.put("foto", ent.getFoto());
 		cV.put("caminho_imagem", ent.getCaminhoImagem());
 		cV.put("device_id", ent.getDeviceId());
 		cV.put("usuario_fk", ent.getUsuario());
@@ -71,7 +71,7 @@ public class ProdutoDAO extends SQLiteOpenHelper {
 		cV.put("telefone", ent.getTelefone());
 		cV.put("tipo", ent.getTipo());
 		cV.put("titulo", ent.getTitulo());
-		// cV.put("titulo", ent.getFoto());
+		cV.put("foto", ent.getFoto());
 		cV.put("caminho_imagem", ent.getCaminhoImagem());
 		cV.put("device_id", ent.getDeviceId());
 		cV.put("usuario_fk", ent.getUsuario());
@@ -96,7 +96,7 @@ public class ProdutoDAO extends SQLiteOpenHelper {
 			ent.setTelefone(c.getString(5));
 			ent.setTipo(c.getString(6));
 			ent.setTitulo(c.getString(7));
-			// ent.setFoto(foto);
+			ent.setFoto(c.getBlob(8));
 			ent.setCaminhoImagem(c.getString(9));
 			ent.setDeviceId(c.getString(10));
 			ent.setUsuario(c.getInt(11));
@@ -125,8 +125,10 @@ public class ProdutoDAO extends SQLiteOpenHelper {
 			ent.setTelefone(c.getString(5));
 			ent.setTipo(c.getString(6));
 			ent.setTitulo(c.getString(7));
-			// ent.setFoto(foto);
+			ent.setFoto(c.getBlob(8));
 			ent.setCaminhoImagem(c.getString(9));
+			ent.setDeviceId(c.getString(10));
+			ent.setUsuario(c.getInt(11));
 
 			if (!s.equals("")) {
 				if (ent.getTitulo().startsWith(s.toLowerCase())) {
@@ -157,8 +159,10 @@ public class ProdutoDAO extends SQLiteOpenHelper {
 		ent.setTelefone(c.getString(5));
 		ent.setTipo(c.getString(6));
 		ent.setTitulo(c.getString(7));
-		// ent.setFoto(foto);
+		ent.setFoto(c.getBlob(8));
 		ent.setCaminhoImagem(c.getString(9));
+		ent.setDeviceId(c.getString(10));
+		ent.setUsuario(c.getInt(11));
 
 		c.close();
 

@@ -18,12 +18,18 @@
             android:layout_alignParentRight="true"
             android:orientation="vertical" >
 
-            <ImageButton
-                android:id="@+id/ibFotoId"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_camera" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <ImageView
+                    android:id="@+id/ivFotoId"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.12"
+                    android:src="@drawable/ic_camera" />
+
+            </LinearLayout>
 
             <TableLayout
                 android:id="@+id/tableLayout1"

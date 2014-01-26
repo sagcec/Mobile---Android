@@ -120,7 +120,7 @@ public class ProdutoListaActivity extends Activity {
 		}
 
 		SimpleAdapter sd = new SimpleAdapter(this, alist, R.layout.layout_row,
-				new String[] { "ID", "Título", "Preço", "Categoria" },
+				new String[] { "ID", "Foto", "Título", "Preço", "Categoria" },
 				new int[] { R.id.t1, R.id.t2, R.id.t3, R.id.t4 });
 		this.lvLista.setAdapter(sd);
 	}
