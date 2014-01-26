@@ -33,8 +33,6 @@ import br.com.achei.model.entity.ProdutoEntity;
 
 public class ProdutoActivity extends Activity {
 
-	private static final int TIRA_FOTO = 123;
-
 	private ProdutoEntity ent = new ProdutoEntity();
 
 	@Override
@@ -138,11 +136,11 @@ public class ProdutoActivity extends Activity {
 		return super.onCreateOptionsMenu(menu);
 	}
 
-	Uri imageUri;
-	Bitmap bTemp;
-	ImageView ivCamera;
+	private Uri imageUri;
+	private Bitmap bTemp;
+	private ImageView ivCamera;
 
-	String FOLDER = "/";
+	String FOLDER = "/achei/";
 	int ACTIVITY_FOTO = 101;
 
 	@Override
@@ -151,8 +149,8 @@ public class ProdutoActivity extends Activity {
 		if (requestCode == ACTIVITY_FOTO) {
 			if (resultCode == RESULT_OK) {
 				try {
-					bTemp = MediaStore.Images.Media.getBitmap(
-							getContentResolver(), imageUri);
+					this.bTemp = MediaStore.Images.Media.getBitmap(
+							getContentResolver(), this.imageUri);
 
 					FileOutputStream outStream = null; // outstream de saida
 					String nomeFoto = "minhafoto.jpeg"; // nome da foto final
@@ -164,19 +162,20 @@ public class ProdutoActivity extends Activity {
 																// outstream com
 																// o arquivo
 																// criado
-					bTemp.compress(Bitmap.CompressFormat.JPEG, 90, outStream); // passa
-																				// o
-																				// Bitmap
-																				// para
-																				// o
-																				// outstream,
-																				// ou
-																				// seja,
-																				// para
-																				// o
-																				// arquivo
+					this.bTemp.compress(Bitmap.CompressFormat.JPEG, 90,
+							outStream); // passa
+					// o
+					// Bitmap
+					// para
+					// o
+					// outstream,
+					// ou
+					// seja,
+					// para
+					// o
+					// arquivo
 					outStream.close();
-					bTemp.recycle();
+					this.bTemp.recycle();
 
 					this.ent.setCaminhoImagem(nomeFoto);
 
@@ -192,7 +191,7 @@ public class ProdutoActivity extends Activity {
 
 					this.ent.setFoto(out.toByteArray());
 
-					ivCamera.setImageBitmap(b1);
+					this.ivCamera.setImageBitmap(b1);
 				} catch (FileNotFoundException e) {
 					e.printStackTrace();
 				} catch (IOException e) {
