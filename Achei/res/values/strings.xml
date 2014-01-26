@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Achei!</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="prompt">Categoria</string>
+
+    <string-array name="categoria_array">
+        <item>Alimentação</item>
+        <item>Imóvel</item>
+        <item>Lazer</item>
+        <item>Veículo</item>
+    </string-array>
+
+</resources>
