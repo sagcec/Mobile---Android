@@ -13,6 +13,8 @@ import br.com.achei.view.ProdutoListaActivity;
 
 public class MainActivity extends Activity implements Runnable {
 
+	private final String FOLDER = "/achei/";
+
 	public Activity getActivity() {
 		return MainActivity.this;
 	}
@@ -45,7 +47,7 @@ public class MainActivity extends Activity implements Runnable {
 
 	private void createFolder() {
 		File folder = new File(Environment.getExternalStorageDirectory()
-				+ "/achei/");
+				+ FOLDER);
 
 		boolean success = true;
 

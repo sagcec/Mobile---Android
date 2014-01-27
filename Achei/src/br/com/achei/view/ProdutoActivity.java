@@ -140,8 +140,8 @@ public class ProdutoActivity extends Activity {
 	private Bitmap bTemp;
 	private ImageView ivCamera;
 
-	String FOLDER = "/achei/";
-	int ACTIVITY_FOTO = 101;
+	private final String FOLDER = "/achei/";
+	private final int ACTIVITY_FOTO = 101;
 
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
@@ -162,17 +162,8 @@ public class ProdutoActivity extends Activity {
 																// o arquivo
 																// criado
 					this.bTemp.compress(Bitmap.CompressFormat.JPEG, 90,
-							outStream); // passa
-					// o
-					// Bitmap
-					// para
-					// o
-					// outstream,
-					// ou
-					// seja,
-					// para
-					// o
-					// arquivo
+							outStream); // passa o Bitmap para o outstream,
+					// ou seja, para o arquivo
 					outStream.close();
 					this.bTemp.recycle();
 
