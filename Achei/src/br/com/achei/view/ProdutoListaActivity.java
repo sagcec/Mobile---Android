@@ -8,12 +8,15 @@ import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.AdapterView.OnItemLongClickListener;
+import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 import br.com.achei.R;
@@ -27,6 +30,8 @@ public class ProdutoListaActivity extends Activity {
 	private List auxLista;
 
 	private ProdutoDAO dao;
+
+	private SimpleAdapter sd;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -72,6 +77,26 @@ public class ProdutoListaActivity extends Activity {
 		});
 
 		carregaLista();
+
+		EditText etTitulo = (EditText) findViewById(R.id.etTituloId);
+		etTitulo.addTextChangedListener(new TextWatcher() {
+			@Override
+			public void onTextChanged(CharSequence s, int start, int before,
+					int count) {
+				sd.getFilter().filter(s.toString());
+			}
+
+			@Override
+			public void beforeTextChanged(CharSequence s, int start, int count,
+					int after) {
+				// TODO Auto-generated method stub
+			}
+
+			@Override
+			public void afterTextChanged(Editable s) {
+				// TODO Auto-generated method stub
+			}
+		});
 	}
 
 	@Override
@@ -119,7 +144,7 @@ public class ProdutoListaActivity extends Activity {
 			}
 		}
 
-		SimpleAdapter sd = new SimpleAdapter(this, alist, R.layout.layout_row,
+		this.sd = new SimpleAdapter(this, alist, R.layout.layout_row,
 				new String[] { "ID", "Título", "Preço", "Categoria" },
 				new int[] { R.id.tvIdId, R.id.tvTituloId, R.id.tvPrecoId,
 						R.id.tvCategoriaId });

@@ -20,10 +20,13 @@
 
             <TextView
                 android:id="@+id/tvCategoriaId"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text=""
-                android:textAppearance="?android:attr/textAppearanceLarge" />
+                android:gravity="center_horizontal"
+                android:singleLine="true"
+                android:text="text1"
+                android:textAppearance="?android:attr/textAppearanceLarge"
+                android:textStyle="bold" />
 
             <ImageView
                 android:id="@+id/ivFotoId"
@@ -33,8 +36,8 @@
 
             <TableLayout
                 android:id="@+id/tableLayout1"
-                android:layout_width="wrap_content"
-                android:layout_height="234dp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentTop="true"
                 android:layout_weight="0.43" >
@@ -49,12 +52,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Título"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvTituloId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Título"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -69,12 +74,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Descrição"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvDescricaoId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Descrição"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -89,12 +96,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Telefone"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvTelefoneId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Telefone"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -109,12 +118,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="E-mail"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvEmailId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="E-mail"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -129,12 +140,14 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Preço"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvPrecoId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Preço"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
@@ -149,16 +162,19 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Endereço"
-                        android:textAppearance="?android:attr/textAppearanceLarge" />
+                        android:textAppearance="?android:attr/textAppearanceLarge"
+                        android:textStyle="bold" />
 
                     <TextView
                         android:id="@+id/tvEnderecoId"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:singleLine="true"
                         android:text="Endereço"
                         android:textAppearance="?android:attr/textAppearanceLarge" />
                 </TableRow>
             </TableLayout>
+
         </LinearLayout>
     </ScrollView>
 
